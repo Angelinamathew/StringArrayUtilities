@@ -11,7 +11,7 @@ public class RemovePackDuplicatesTest {
         String[] array = {"a", "a", "a", "b", "c", "c", "a", "a", "d"};
         String[] expected = {"aaa", "b", "cc", "aa", "d"};
         String[] actual = StringArrayUtils.packConsecutiveDuplicates(array);
-        Assert.assertEquals(expected, actual);
+        Assert.giassertEquals(expected, actual);
     }
 
 
