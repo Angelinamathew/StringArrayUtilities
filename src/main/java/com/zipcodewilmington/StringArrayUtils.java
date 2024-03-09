@@ -1,5 +1,8 @@
 package com.zipcodewilmington;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -88,7 +91,33 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        ArrayList<Character> myArr = new ArrayList<Character>();
+        String str ="";
+        int count = 0;
+        Boolean result = false;
+        for (int i=0; i< array.length; i++){
+            str=str+array[i];
+        }
+        System.out.println(str);
+        str=str.toLowerCase();
+        for (int i=0; i<str.length();i++){
+            int k= str.charAt(i);
+                if (k>=65&&k<90 || k>=97&&k<=122){
+                    if (!myArr.contains(str.charAt(i))){
+                        myArr.add(str.charAt(i));
+                        count++;
+                    }
+                }
+            }
+        System.out.println(myArr);
+        System.out.println(count);
+            if(count==26){
+                result=true;
+            }else {
+                result=false;
+            }
+
+        return result;
     }
 
     /**
@@ -129,7 +158,17 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> myArray = new ArrayList<>();
+        myArray.add(array[0]);
+        for (int i = 1; i < array.length; i++) {
+            if(!array[i-1].equals(array[i])){
+                myArray.add(array[i]);
+            }
+
+        }
+        String[] result = myArray.toArray(new String[myArray.size()]);
+
+        return result;
     }
 
     /**
@@ -137,7 +176,20 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add(array[0]);
+
+        for (int i=1; i< array.length; i++){
+            if(array[i-1].equalsIgnoreCase(array[i])){
+                String last = arr.get(arr.size()-1);
+                last=last.concat(array[i]);
+                arr.set(arr.size()-1, last);
+            }else{
+                arr.add(array[i]);
+            }
+        }
+        String[] newArray = arr.toArray(new String[arr.size()]);
+        return newArray;
     }
 
 
