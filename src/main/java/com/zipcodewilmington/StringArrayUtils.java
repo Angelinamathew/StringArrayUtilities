@@ -74,8 +74,7 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        String[] reversed = new String[array.length];
-        reversed=reverse(array);
+        String[] reversed = reverse(array);
         boolean flag = true;
         for (int i=0; i<reversed.length;i++){
             if (!array[i].equals(reversed[i])) {
@@ -101,21 +100,21 @@ public class StringArrayUtils {
         System.out.println(str);
         str=str.toLowerCase();
         for (int i=0; i<str.length();i++){
-            int k= str.charAt(i);
-                if (k>=65&&k<90 || k>=97&&k<=122){
-                    if (!myArr.contains(str.charAt(i))){
-                        myArr.add(str.charAt(i));
-                        count++;
-                    }
+            char ch= str.charAt(i);
+            if (ch >= 'a' && ch <= 'z'){
+                if (!myArr.contains(str.charAt(i))){
+                    myArr.add(str.charAt(i));
+                    count++;
                 }
             }
+        }
         System.out.println(myArr);
         System.out.println(count);
-            if(count==26){
-                result=true;
-            }else {
-                result=false;
-            }
+        if(count==26){
+            result=true;
+        }else {
+            result=false;
+        }
 
         return result;
     }
@@ -158,11 +157,14 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
+
         ArrayList<String> myArray = new ArrayList<String>();
         myArray.add(array[0]);
+        System.out.println(myArray);
         for (int i = 1; i < array.length; i++) {
             if(!array[i-1].equals(array[i])){
                 myArray.add(array[i]);
+                System.out.println(myArray);
             }
 
         }
@@ -178,15 +180,17 @@ public class StringArrayUtils {
     public static String[] packConsecutiveDuplicates(String[] array) {
         ArrayList<String> arr = new ArrayList<>();
         arr.add(array[0]);
+        System.out.println("ArrayList 1st element: " +arr);
 
         for (int i=1; i< array.length; i++){
             if(array[i-1].equalsIgnoreCase(array[i])){
                 String last = arr.get(arr.size()-1);
-                last=last.concat(array[i]);
+                last = last + array[i];
                 arr.set(arr.size()-1, last);
             }else{
                 arr.add(array[i]);
             }
+
         }
         String[] newArray = arr.toArray(new String[arr.size()]);
         return newArray;
